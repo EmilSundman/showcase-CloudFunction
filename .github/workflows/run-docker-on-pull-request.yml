@@ -3,7 +3,7 @@ on:
     pull_request:
         branches: [main]
 jobs:
-    Run-tests:
+    Test-Docker-Image:
         runs-on: ubuntu-latest
 
         steps:
