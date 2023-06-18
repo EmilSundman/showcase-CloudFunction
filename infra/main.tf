@@ -23,8 +23,3 @@ resource "google_artifact_registry_repository" "app" {
   format        = "DOCKER"
 }
 
-# Define Storage Bucket
-resource "google_storage_bucket" "app" {
-  name     = "app-bucket"
-  location = var.region
-}
