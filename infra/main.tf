@@ -18,7 +18,13 @@ resource "google_project_iam_member" "app" {
 
 # Define artifact registry 
 resource "google_artifact_registry_repository" "app" {
-  repository_id = "pythonApp-repo"
+  repository_id = "app-repo"
   location      = var.region
   format        = "DOCKER"
+}
+
+# Define Storage Bucket
+resource "google_storage_bucket" "app" {
+  name     = "app-bucket"
+  location = var.region
 }
