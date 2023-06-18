@@ -18,7 +18,7 @@ resource "google_project_iam_member" "app" {
 
 # Define artifact registry 
 resource "google_artifact_registry_repository" "app" {
-  repository_id = "app-repo"
+  repository_id = "pythonApp-repo"
   location      = var.region
   format        = "DOCKER"
 }
