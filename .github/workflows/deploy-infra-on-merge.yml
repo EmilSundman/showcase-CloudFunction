@@ -26,13 +26,13 @@ jobs:
             - name: Terraform variables
               run: |-
                 cat > pipeline.auto.tfvars <<EOF
+                project_id = "${{ vars.GCP_PROJECT_ID }}" 
                 region = "${{ vars.GCP_REGION }}" 
                 zone = "${{ vars.GCP_ZONE }}"
-                project_id = "${{ vars.GCP_PROJECT_ID }}" 
                 EOF
             
             - name: Terraform init
-              run: terraform init -reconfigure 
+              run: terraform init 
               env: 
                 GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
             
