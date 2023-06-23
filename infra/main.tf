@@ -23,19 +23,20 @@ resource "google_artifact_registry_repository" "app" {
   format        = "DOCKER"
 }
 
-# resource "google_cloud_run_v2_job" "cloud-run" {
-#   name         = "cloud-run"
-#   location     = var.region
-#   launch_stage = "BETA"
+# Dependency here is awkward as the docker image needs to exists once the resource is created. So would need to be solved in a smart way. For now, the image is created before the resource was added in the repo. 
+resource "google_cloud_run_v2_job" "cloud-run" {
+  name         = "cloud-run"
+  location     = var.region
+  launch_stage = "BETA"
 
-#   template {
-#     template {
-#       containers {
-#         image = "europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest"
+  template {
+    template {
+      containers {
+        image = "europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest"
 
-#       }
-#       max_retries = 0
-#       timeout     = "1800s"
-#     }
-#   }
-# }
+      }
+      max_retries = 0
+      timeout     = "1800s"
+    }
+  }
+}
