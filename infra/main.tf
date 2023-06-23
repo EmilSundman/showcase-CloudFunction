@@ -23,3 +23,19 @@ resource "google_artifact_registry_repository" "app" {
   format        = "DOCKER"
 }
 
+urce "google_cloud_run_v2_job" "dbt-run" {
+  name         = "dbt-run"
+  location     = var.region
+  launch_stage = "BETA"
+
+  template {
+    template {
+      containers {
+        image = "europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest"
+
+      }
+      max_retries = 0
+      timeout     = "1800s"
+    }
+  }
+}
