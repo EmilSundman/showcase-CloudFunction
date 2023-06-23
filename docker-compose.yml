@@ -1,0 +1,5 @@
+services: 
+  app: 
+    image: cloud-app:0.0.1  
+    build: .
+    restart: always

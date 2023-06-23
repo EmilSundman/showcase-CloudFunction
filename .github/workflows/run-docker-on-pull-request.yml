@@ -10,9 +10,5 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
 
-            - name: Build Docker Image
-              run: docker build -t test-image .
-            
-            - name: Run Docker Image
-              run: docker run test-image
-              
+            - name: Build Compose Up
+              run: docker compose up -d
