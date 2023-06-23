@@ -23,7 +23,7 @@ resource "google_artifact_registry_repository" "app" {
   format        = "DOCKER"
 }
 
-urce "google_cloud_run_v2_job" "dbt-run" {
+resource "google_cloud_run_v2_job" "dbt-run" {
   name         = "dbt-run"
   location     = var.region
   launch_stage = "BETA"
