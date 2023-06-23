@@ -61,7 +61,7 @@ jobs:
 
         - name: Setup gcloud docker
           run: |
-            gcloud auth configure-docker europe-north1-docker.pkg.dev
+            gcloud auth configure-docker europe-north1-docker.pkg.dev --quiet
           env:
             GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         
