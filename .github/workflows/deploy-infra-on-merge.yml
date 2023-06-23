@@ -59,6 +59,12 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
 
+        - name: Setup gcloud docker
+          run: |
+            gcloud auth configure-docker europe-north1-docker.pkg.dev
+          env:
+            GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        
         - name: Docker Compose Build
           run: |
             docker-compose build
