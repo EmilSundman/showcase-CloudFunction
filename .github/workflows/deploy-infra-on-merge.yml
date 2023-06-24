@@ -59,6 +59,20 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
 
+        - name: Authenticate with Google Cloud
+          uses: 'google-github-actions/auth@v1'
+          with:
+            credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+        
+        - name: Setup gcloud SDK
+          uses: google-github-actions/setup-gcloud@v1
+          with: 
+            version: '>= 363.0.0'
+        
+        - name: Use gcloud CLI 
+          run: |
+            gcloud info
+
         - name: Setup gcloud docker
           run: |
             gcloud auth configure-docker europe-north1-docker.pkg.dev --quiet
@@ -74,11 +88,11 @@ jobs:
           run: |
             docker tag cloud-app:latest europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest
 
-        # - name: Push Docker Image
-        #   run: |
-        #     docker push europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest
-        #   env:
-            # GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        - name: Push Docker Image
+          run: |
+            docker push europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest
+          env:
+            GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
         - name: Push Docker Image
           uses: RafikFarhad/push-to-gcr-github-action@v5-beta
