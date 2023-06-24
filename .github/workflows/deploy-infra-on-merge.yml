@@ -93,12 +93,3 @@ jobs:
             docker push europe-north1-docker.pkg.dev/showcase-cloudfunction/app-repo/cloud-app:latest
           env:
             GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-
-        - name: Push Docker Image
-          uses: RafikFarhad/push-to-gcr-github-action@v5-beta
-          with:
-            gcloud_service_key: ${{ secrets.GOOGLE_CREDENTIALS }}
-            registry: europe-north1-docker.pkg.dev
-            project_id: ${{ vars.GCP_PROJECT_ID }}
-            image_name: cloud-app
-            image_tag: latest
